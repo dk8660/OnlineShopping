@@ -1,0 +1,26 @@
+spring:
+  profiles:
+    active: dev # ?? ?? ??, base.initData.NotProd ??
+  thymeleaf:
+    cache: false
+    prefix: file:src/main/resources/templates/
+  devtools:
+    livereload:
+      enabled: true
+    restart:
+      enabled: true
+  datasource:
+    url: jdbc:mariadb://127.0.0.1:3306/tutorial__dev?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul
+    username: root
+    driver-class-name: org.mariadb.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: create # ?????? ??? ??? database ???
+    #      ddl-auto: update # ???? ?? ??
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        use_sql_comments: true
+        show_sql: true
