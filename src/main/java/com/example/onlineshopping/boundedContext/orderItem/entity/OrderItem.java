@@ -1,4 +1,4 @@
-package com.example.onlineshopping.boundedContext.order.entity;
+package com.example.onlineshopping.boundedContext.orderItem.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

@@ -1,4 +1,4 @@
-package com.example.onlineshopping.boundedContext.order.entity;
+package com.example.onlineshopping.boundedContext.orders.entity;
 
 import com.example.onlineshopping.base.enums.OrderStatus;
 import jakarta.persistence.*;
@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 @Entity
 @Builder
 @EntityListeners(AuditingEntityListener.class)
-public class Order {
+public class Orders {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
