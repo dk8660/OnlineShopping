@@ -18,7 +18,7 @@ public class MemberController {
 
     @GetMapping("/member/login")
     public String showLoginPage() {
-        if(rq.isLoggedIn()) return "/usr/member/alreadyLogined";
+        if(rq.isLogined()) return "/usr/member/alreadyLogined";
         return "/usr/member/login";
     }
 
@@ -28,14 +28,15 @@ public class MemberController {
         RsData rsData = memberService.tryLogin(email, password);
         if(rsData.isSuccess()) {
             Member member = (Member) rsData.getData();
-            rq.setSession("loginedMemberId", member.getId());
+//            rq.setSession("loginedMemberId", member.getId());
+            rq.setJwtToken(member.getId());
         }
         return rsData;
     }
 
     @GetMapping("member/join")
     public String showJoinPage() {
-        if(rq.isLoggedIn()) return "/usr/member/alreadyLogined";
+        if(rq.isLogined()) return "/usr/member/alreadyLogined";
         return "/usr/member/join";
     }
 
@@ -49,9 +50,9 @@ public class MemberController {
     @GetMapping("/member/logout")
     @ResponseBody
     public RsData logout() {
-        boolean sessionRemoved = rq.removeSession("loginedMemberId");
-
-        if(!sessionRemoved) {
+//        boolean removed = rq.removeSession("loginedMemberId");
+        boolean removed = rq.removeJwtToken();
+        if(!removed) {
             return RsData.of("F-1", "이미 로그아웃 상태입니다.");
         }
         return RsData.of("S-1", "로그아웃 되었습니다.");
