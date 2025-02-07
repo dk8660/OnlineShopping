@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>상품 목록</title>
+</head>
+<body>
+    <h1>상품 목록</h1>
+    <ul>
+        <li th:each="product : ${products}">
+<!--            이미지 삽입-->
+            <h3 th:text="${product.name}"></h3>
+            <p th:text="${product.description}"></p>
+            <p><span th:text="${product.price}"></span> 원</p>
+        </li>
+    </ul>
+</body>
+</html>

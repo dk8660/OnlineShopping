@@ -36,6 +36,9 @@ public class Product {
 
     private String imageUrl;
 
+    @Column(nullable = false)
+    private long seller;
+
     @CreatedDate
     private LocalDateTime createdOn;
 }

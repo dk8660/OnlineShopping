@@ -105,7 +105,9 @@ public class Rq {
     }
 
     public void setCookie(String name, String value) {
-        response.addCookie(new Cookie(name, value));
+        Cookie cookie = new Cookie(name, value);
+        cookie.setPath("/");
+        response.addCookie(cookie);
     }
 
     public boolean removeCookie(String name) {

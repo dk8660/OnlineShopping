@@ -42,8 +42,8 @@ public class MemberController {
 
     @PostMapping("member/doJoin")
     @ResponseBody
-    public RsData join(String email, String password, String name, String phone) {
-        RsData rsData = memberService.tryJoin(email, password, name, phone);
+    public RsData join(String email, String password, String name, String phone, String role) {
+        RsData rsData = memberService.tryJoin(email, password, name, phone, role);
         return rsData;
     }
 
