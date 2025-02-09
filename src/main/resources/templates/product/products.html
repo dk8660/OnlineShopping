@@ -12,7 +12,11 @@
             <h3 th:text="${product.name}"></h3>
             <p th:text="${product.description}"></p>
             <p><span th:text="${product.price}"></span> 원</p>
+            <input type="number" th:id="'quantity-' + ${product.id}" value="0" min="0" th:max="${product.stock}">
+            <button class="addToCart" th:onclick="'addToCart(' + ${product.id} +')'">장바구니에 담기</button>
         </li>
     </ul>
+
+    <script th:src="@{/js/cart.js}"></script>
 </body>
 </html>
