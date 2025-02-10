@@ -1,10 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>내 장바구니</title>
 </head>
 <body>
-
+    <h1>내 장바구니</h1>
+    <ul th:if="${products != null and not #lists.isEmpty(products)}">
+        <li th:each="product, stat : ${products}">
+            <h3 th:text="${product.name}"></h3>
+            <p>
+                <span th:text="'가격: ' + ${product.price} + '원'"></span>
+                <br>
+                <span th:text="'수량: ' + ${items[stat.index].quantity} + '개'"></span>
+            </p>
+            <form th:action="@{/cart/delete/{id}(id=${items[stat.index].id})}" method="POST">
+                <input type="hidden" name="_method" value="DELETE">
+                <button type="submit">삭제</button>
+            </form>
+        </li>
+    </ul>
+    <p th:if="${products == null or #lists.isEmpty(products)}">장바구니가 비어있습니다.</p>
 </body>
 </html>
