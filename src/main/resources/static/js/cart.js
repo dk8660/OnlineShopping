@@ -42,7 +42,8 @@ function submitOrder() {
        if(checkbox.checked) {
            selectedProducts.push({
                productId: checkbox.value,
-               quantity: parseInt(checkbox.dataset.quantity, 10)
+               quantity: parseInt(checkbox.dataset.quantity, 10),
+               cartId: checkbox.dataset.id
            });
        }
     });
@@ -57,14 +58,18 @@ function submitOrder() {
         items: selectedProducts
     }
 
-    let form = document.createElement("form");
-    form.method = "POST";
-    form.action = "/order/newOrder";
-    let input = document.createElement("input");
-    input.type = "hidden";
-    input.name = "orderData";
-    input.value = JSON.stringify(orderData);
-    form.appendChild(input);
-    document.body.appendChild(form);
-    form.submit();
+    fetch("/order/newOrder", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(orderData)
+    })
+        .then(response => {
+            if (response.ok) {
+                window.location.href = '/order';
+            } else {
+                alert("주문 처리에 실패했습니다.");
+            }
+        });
 }

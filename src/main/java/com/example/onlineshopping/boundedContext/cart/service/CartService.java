@@ -39,6 +39,7 @@ public class CartService {
 
     public RsData tryDelete(long id) {
         try {
+//            System.out.println("ID: " + id);
             cartRepository.deleteById(id);
             return RsData.of("S-1", "장바구니에서 삭제하였습니다.");
         }

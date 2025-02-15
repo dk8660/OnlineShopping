@@ -18,6 +18,17 @@ public class ProductService {
         return productRepository.findAll();
     }
 
+    public String getProductNameById(long id) {
+        try {
+            Product product = productRepository.findById(id).get();
+            return product.getName();
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
     public RsData tryRegister(String name, String description, String price, String stock, String category, long sellerId) {
         if(name == null || name.trim().isEmpty()) return RsData.of("F-1", "상품명을 입력해주세요.");
         if(price == null || price.trim().isEmpty()) return RsData.of("F-2", "상품의 가격을 입력해주세요.");
@@ -66,6 +77,16 @@ public class ProductService {
             return RsData.of("S-1", "상품 정보를 수정하였습니다.");
         } catch (Exception e) {
             return RsData.of("F-2", "상품 정보 수정에 실패하였습니다.");
+        }
+    }
+
+    public int tryGetPrice(long id) {
+        try {
+            Product product = productRepository.findById(id).get();
+            return product.getPrice();
+        }
+        catch (Exception e) {
+            return 0;
         }
     }
 }

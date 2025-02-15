@@ -12,6 +12,7 @@
                    th:value="${product.id}"
                    th:data-price="${product.price}"
                    th:data-quantity="${items[stat.index].quantity}"
+                   th:data-id="${items[stat.index].id}"
                    onchange="updateTotal()"/>
             <h3 th:text="${product.name}"></h3>
             <p>
