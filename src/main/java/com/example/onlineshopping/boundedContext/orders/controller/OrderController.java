@@ -30,7 +30,7 @@ public class OrderController {
 
     @GetMapping("/order")
     public String order(Model model) {
-        List<Orders> orders = orderService.getAllOrders(rq.getLoginedMemberId());
+        List<Orders> orders = orderService.getAllOrdersOrderByCreatedAtDesc(rq.getLoginedMemberId());
 
         Map<Long, List<OrderListDto>> items = new HashMap<Long, List<OrderListDto>>();
         for(Orders order : orders) {

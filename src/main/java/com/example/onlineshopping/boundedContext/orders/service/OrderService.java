@@ -13,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -52,7 +53,24 @@ public class OrderService {
         return orderRepository.findAllByUserId(id);
     }
 
-    public void tryCancelOrder(long id) {
+    public List<Orders> getAllOrdersOrderByCreatedAtDesc(long id) {
+        return orderRepository.findAllByUserIdOrderByCreatedAtDesc(id);
+    }
 
+    public RsData tryCancelOrder(long id) {
+        try{
+            Optional<Orders> optionalOrder = orderRepository.findById(id);
+            if(optionalOrder.isEmpty()) {
+                return RsData.of("F-1", "주문 취소에 실패하였습니다.");
+            }
+            Orders order = optionalOrder.get();
+            order.setStatus(OrderStatus.CANCELLED);
+            orderRepository.save(order);
+
+            return RsData.of("S-1", "주문 취소에 성공하였습니다.");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return RsData.of("F-2", "주문 취소에 실패하였습니다.");
+        }
     }
 }
