@@ -35,4 +35,8 @@ public class Orders {
 
     @UpdateTimestamp
     private LocalDateTime updatedAt;
+
+    public boolean isPending() {
+        return this.status == OrderStatus.PENDING;
+    }
 }

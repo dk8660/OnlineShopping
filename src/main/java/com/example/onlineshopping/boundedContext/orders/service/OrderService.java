@@ -53,6 +53,10 @@ public class OrderService {
         return orderRepository.findAllByUserId(id);
     }
 
+    public Orders getOrderById(long id) {
+        return orderRepository.findById(id).orElse(null);
+    }
+
     public List<Orders> getAllOrdersOrderByCreatedAtDesc(long id) {
         return orderRepository.findAllByUserIdOrderByCreatedAtDesc(id);
     }
@@ -71,6 +75,21 @@ public class OrderService {
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return RsData.of("F-2", "주문 취소에 실패하였습니다.");
+        }
+    }
+
+    public RsData tryUpdateOrderStatus(long orderId) {
+        try {
+            Orders order = orderRepository.findById(orderId).orElse(null);
+            if(order == null) return RsData.of("F-1", "주문 정보를 찾지 못하였습니다.");
+
+            order.setStatus(OrderStatus.PAID);
+            orderRepository.save(order);
+
+            return RsData.of("S-1", "주문 상태 업데이트에 성공하였습니다.");
+        }
+        catch (Exception e) {
+            return RsData.of("F-2", "주문 정보 수정에 실패하였습니다.");
         }
     }
 }

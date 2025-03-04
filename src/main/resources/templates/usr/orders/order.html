@@ -22,7 +22,11 @@
         </ul>
         <p>총액: <span th:text="${order.getTotal_price()}"></span></p>
         <p>상태: <span th:text="${order.getStatus()}"></span></p>
-        <form th:action="@{/order/cancel/{id}(id=${order.getId()})}" method="POST">
+        <form th:if="${order.isPending()}" th:action="@{/pay}" method="POST">
+            <input type="hidden" name="id" th:value="${order.getId()}">
+            <button type="submit">결제</button>
+        </form>
+        <form th:if="${order.isPending()}" th:action="@{/order/cancel/{id}(id=${order.getId()})}" method="POST">
             <input type="hidden" name="_method" value="PUT">
             <button type="submit">취소</button>
         </form>
@@ -30,5 +34,8 @@
 </ul>
 
 <p th:if="${orders == null or #lists.isEmpty(orders)}">주문 내역이 없습니다.</p>
+
+<button onclick="location.href='/cart'">내 장바구니</button>
+
 </body>
 </html>

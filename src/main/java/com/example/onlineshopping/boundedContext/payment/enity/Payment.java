@@ -28,7 +28,9 @@ public class Payment {
 
     private Enum<PaymentMethod> paymentMethod;
 
-    private long transactionId;
+//    private long transactionId;
+
+    private int amount;
 
     private Enum<PaymentStatus> status;
 
