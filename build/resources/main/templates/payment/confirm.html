@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>결제 페이지</title>
+</head>
+<body>
+
+<h2>결제 진행 중...</h2>
+<p>주문번호: <span th:text="${payment.getOrderId()}"></span></p>
+<p>결제 수단: <span th:text="${payment.getPaymentMethod()}"></span></p>
+<p>결제 금액: <span th:text="${payment.getAmount()}"></span></p>
+
+<form th:action="@{/pay/complete}" method="POST">
+    <input type="hidden" name="paymentId" th:value="${payment.getId()}">
+    <button type="submit">결제 완료</button>
+</form>
+
+</body>
+</html>

@@ -8,7 +8,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @AllArgsConstructor
 @Controller
@@ -23,15 +22,14 @@ public class MemberController {
     }
 
     @PostMapping("/member/doLogin")
-    @ResponseBody
-    public RsData login(String email, String password) {
+    public String login(String email, String password) {
         RsData rsData = memberService.tryLogin(email, password);
         if(rsData.isSuccess()) {
             Member member = (Member) rsData.getData();
 //            rq.setSession("loginedMemberId", member.getId());
             rq.setJwtToken(member.getId());
         }
-        return rsData;
+        return "redirect:/";
     }
 
     @GetMapping("member/join")
@@ -41,20 +39,19 @@ public class MemberController {
     }
 
     @PostMapping("member/doJoin")
-    @ResponseBody
-    public RsData join(String email, String password, String name, String phone, String role) {
+    public String join(String email, String password, String name, String phone, String role) {
         RsData rsData = memberService.tryJoin(email, password, name, phone, role);
-        return rsData;
+        return "redirect:/";
     }
 
     @GetMapping("/member/logout")
-    @ResponseBody
-    public RsData logout() {
+    public String logout() {
 //        boolean removed = rq.removeSession("loginedMemberId");
         boolean removed = rq.removeJwtToken();
-        if(!removed) {
-            return RsData.of("F-1", "이미 로그아웃 상태입니다.");
-        }
-        return RsData.of("S-1", "로그아웃 되었습니다.");
+        return "redirect:/";
+//        if(!removed) {
+//            return RsData.of("F-1", "이미 로그아웃 상태입니다.");
+//        }
+//        return RsData.of("S-1", "로그아웃 되었습니다.");
     }
 }

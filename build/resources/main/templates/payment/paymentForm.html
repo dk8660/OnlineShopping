@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>결제 페이지</title>
+</head>
+<body>
+<h1>결제</h1>
+
+<form th:action="@{/pay/process}" method="POST">
+
+  <label for="address">배송 주소:</label>
+  <input type="text" id="address" name="address" required>
+  <input type="hidden" name="orderId" th:value="${order.getId()}">
+  <input type="hidden" name="totalPrice" th:value="${order.getTotal_price()}">
+
+  <p>결제 금액: <span th:text="${order.getTotal_price()}"></span> 원</p>
+
+  <label for="paymentMethod">결제 방식:</label>
+  <select id="paymentMethod" name="paymentMethod">
+    <option value="card">신용카드</option>
+    <option value="bank_transfer">계좌이체</option>
+    <option value="line_pay">Line Pay</option>
+  </select>
+
+  <button type="submit">결제하기</button>
+</form>
+
+</body>
+</html>

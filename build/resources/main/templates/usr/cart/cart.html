@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>내 장바구니</title>
+</head>
+<body>
+    <h1>내 장바구니</h1>
+    <ul th:if="${products != null and not #lists.isEmpty(products)}">
+        <li th:each="product, stat : ${products}">
+            <input type="checkbox" class="product-checkbox"
+                   th:value="${product.id}"
+                   th:data-price="${product.price}"
+                   th:data-quantity="${items[stat.index].quantity}"
+                   th:data-id="${items[stat.index].id}"
+                   onchange="updateTotal()"/>
+            <h3 th:text="${product.name}"></h3>
+            <p>
+                <span th:text="'가격: ' + ${product.price} + '원'"></span>
+                <br>
+                <span th:text="'수량: ' + ${items[stat.index].quantity} + '개'"></span>
+            </p>
+            <form th:action="@{/cart/delete/{id}(id=${items[stat.index].id})}" method="POST">
+                <input type="hidden" name="_method" value="DELETE">
+                <button type="submit">삭제</button>
+            </form>
+        </li>
+    </ul>
+
+    <p th:if="${products == null or #lists.isEmpty(products)}">장바구니가 비어있습니다.</p>
+
+    <div th:if="${products != null and not #lists.isEmpty(products)}">
+        <h2>총 금액: <span id="total-price">0원</span></h2>
+        <button type="button" onclick="submitOrder()">주문하기</button>
+    </div>
+
+    <script th:src="@{/js/cart.js}"></script>
+</body>
+</html>

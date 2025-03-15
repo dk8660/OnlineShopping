@@ -1,10 +1,9 @@
 package com.example.onlineshopping.boundedContext.orders.controller;
 
-import com.example.onlineshopping.base.enums.OrderStatus;
 import com.example.onlineshopping.base.rs.Rq;
 import com.example.onlineshopping.base.rsData.RsData;
 import com.example.onlineshopping.boundedContext.orderItem.entity.OrderItem;
-import com.example.onlineshopping.boundedContext.orderItem.entity.service.OrderItemService;
+import com.example.onlineshopping.boundedContext.orderItem.service.OrderItemService;
 import com.example.onlineshopping.boundedContext.orders.dto.OrderDto;
 import com.example.onlineshopping.boundedContext.orders.dto.OrderListDto;
 import com.example.onlineshopping.boundedContext.orders.entity.Orders;
@@ -19,7 +18,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @Controller
 @RequiredArgsConstructor

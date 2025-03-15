@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>결제 페이지</title>
+</head>
+<body>
+
+<h2>결제가 완료되었습니다!</h2>
+<p>주문번호: <span th:text="${payment.getOrderId()}"></span></p>
+<p>결제 수단: <span th:text="${payment.getPaymentMethod()}"></span></p>
+<p>결제 금액: <span th:text="${payment.getAmount()}"></span></p>
+
+<button onclick="location.href='/order'">주문 내역 보기</button>
+
+</body>
+</html>

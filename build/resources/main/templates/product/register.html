@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>상품 등록</title>
+</head>
+<body>
+<h1>상품 등록</h1>
+<form method="POST" action="/product/doProductRegister">
+  <input type="text" name="name" placeholder="상품명">
+  <input type="text" name="description" placeholder="설명">
+  <input type="text" name="price" placeholder="가격">
+  <input type="text" name="stock" placeholder="재고">
+  <input type="text" name="category" placeholder="카테고리">
+<!--  이미지-->
+  <button type="submit">등록</button>
+</form>
+</body>
+</html>
