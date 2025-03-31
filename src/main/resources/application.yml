@@ -11,8 +11,9 @@ spring:
     restart:
       enabled: true
   datasource:
-    url: jdbc:mariadb://host.docker.internal:3306/tutorial__dev?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul
-    username: root
+    url: jdbc:mariadb://mariadb-container:3306/tutorial__dev?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul
+    username: springuser
+    password: 1234
     driver-class-name: org.mariadb.jdbc.Driver
 
   jpa:
