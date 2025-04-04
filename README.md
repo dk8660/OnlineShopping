@@ -88,3 +88,34 @@ $ docker run -p 3306:3306 --name mariadb-container -e MYSQL_ROOT_PASSWORD=root -
 - **실제 결제 시스템(PG 연동) 적용**
 - **React 기반의 프론트엔드 리팩토링**
 - **쿼리 최적화 및 캐싱을 통한 성능 개선**
+
+---
+## 8. 제공 API
+
+### 회원 API
+- `GET /member/join`: 회원가입 페이지
+- `POST /member/join`: 회원가입 처리
+- `GET /member/login`: 로그인 페이지
+- `POST /member/login`: 로그인 처리
+- `POST /member/logout`: 로그아웃
+
+### 상품 API
+- `GET /product`: 전체 상품 목록 조회
+- `GET /product/myproducts`: 내 상품 목록 조회
+- `GET /product/register`: 상품 등록 페이지
+- `POST /product/doProductRegister`: 상품 등록
+- `DELETE /product/delete/{id}`: 상품 삭제
+- `GET /product/update/{id}`: 상품 수정 페이지
+
+### 주문 API
+- `POST /order/create`: 주문 생성
+- `GET /order/list`: 주문 목록 조회
+- `GET /order/{id}`: 주문 상세 조회
+
+### 장바구니 API
+- `GET /cart`: 장바구니 조회
+- `POST /cart/add`: 상품 추가
+- `DELETE /cart/remove/{id}`: 상품 제거
+
+### 결제 API
+- `POST /payment/pay/{orderId}`: 결제 처리
