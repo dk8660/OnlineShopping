@@ -7,6 +7,9 @@ T-Shopping is a full-stack e-commerce platform developed using Spring Boot. The 
 ## 1. Project Overview
 
 - **Project Name**: T-Shopping (Online Shopping Mall)
+- **Development Period**: 2024.12 ~ 2025.02
+- **Project Team Number**: 1 person
+- **Role**: Backend, Server
 - **Framework**: Spring Boot
 - **Deployment**: AWS EC2 with Docker
 - **Note**:  
