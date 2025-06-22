@@ -12,6 +12,7 @@ T-Shopping is a full-stack e-commerce platform developed using Spring Boot. The 
 - **Role**: Backend, Server
 - **Framework**: Spring Boot
 - **Deployment**: AWS EC2 with Docker
+- **How to Learn**: Online Lecture, Web Search
 - **Note**:  
   ~~Deployed at [http://13.209.43.90:8080](http://13.209.43.90:8080)~~  
   *(The server has been shut down due to expiration of free hosting plan.)*
